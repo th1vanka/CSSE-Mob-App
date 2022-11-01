@@ -1,3 +1,5 @@
+import 'package:csse_mobile_app/order_details.dart';
+
 import '/notification.dart';
 import '/settingsPage.dart';
 import '/category.dart';
@@ -17,9 +19,9 @@ class _OrderDetailsState extends State<OrderDetails> {
   final screens=[
     Home(),
     CategoryPage(),
+    OrderDetailsPage(),
     NotificationPage(),
-    NotificationPage(),
-    SettingsPage(),
+    SettingsPage()
   ];
 
   @override
