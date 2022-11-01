@@ -52,6 +52,8 @@ class _OrderDetailsState extends State<OrderDetails> {
       ),
       body: screens[_page],
 
+
+
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white,
         color: Color(0xFFffb566),

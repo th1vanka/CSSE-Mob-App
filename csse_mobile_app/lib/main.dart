@@ -1,3 +1,5 @@
+import 'package:csse_mobile_app/proceed.dart';
+
 import '/nav_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "CSSE",
-      home: OrderDetails(),
+      home: Proceed(),
     );
   }
 }
