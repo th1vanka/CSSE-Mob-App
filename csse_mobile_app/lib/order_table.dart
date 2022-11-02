@@ -1,50 +1,70 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyTable extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class OrderDetailsPage extends StatefulWidget{
+  const OrderDetailsPage({Key? key}) : super(key: key);
 
-class _MyAppState extends State<MyTable> {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('Flutter Tutorial - TutorialKart'),
-          ),
-          body: ListView(children: <Widget>[
-            Center(
-                child: Text(
-                  'Students',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                )),
-            DataTable(
-              columns: [
-                DataColumn(label: Text('RollNo')),
-                DataColumn(label: Text('Name')),
-                DataColumn(label: Text('Class')),
+  State<OrderDetailsPage> createState() => _OrderDetailsPageState();
+}
+class _OrderDetailsPageState extends State<OrderDetailsPage> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Future<void> openDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          final TextEditingController _textEditingController = TextEditingController();
+          bool isChecked = false;
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      controller: _textEditingController,
+                      validator: (value) {
+                        return value!.isNotEmpty ? null : 'Invalid field';
+                      },
+                      decoration: InputDecoration(hintText: 'Enter text'),
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Choice box'),
+                        Checkbox(
+                            value: isChecked,
+                            onChanged: (checked) {
+                              setState(() {
+                                isChecked = checked!;
+                              });
+                            }
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              actions: <Widget>[
+                InkWell(
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.of(context).pop();
+                    }
+                  },
+                  child: Text('SUBMIT'),
+                )
               ],
-              rows: [
-                DataRow(cells: [
-                  DataCell(Text('1')),
-                  DataCell(Text('Arya')),
-                  DataCell(Text('6')),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('12')),
-                  DataCell(Text('John')),
-                  DataCell(Text('9')),
-                ]),
-                DataRow(cells: [
-                  DataCell(Text('42')),
-                  DataCell(Text('Tony')),
-                  DataCell(Text('8')),
-                ]),
-              ],
-            ),
-          ])),
-    );
+            );
+          });
+        });
   }
+
+    @override
+    Widget build(BuildContext context) {
+      return Container();
+    }
 }
