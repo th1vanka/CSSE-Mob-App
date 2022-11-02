@@ -14,7 +14,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
     return await showDialog(
         context: context,
         builder: (context) {
-          final TextEditingController _textEditingController = TextEditingController();
+          final controller = TextEditingController();
           bool isChecked = false;
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
@@ -91,6 +91,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                 left: 10,
                               ),
                               child: new TextField(
+                                controller: controller,
                                   decoration: InputDecoration(
 
                                     hintText: "Quantity"
