@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class OrderList extends StatefulWidget {
+  const OrderList({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<OrderList> createState() => _OrderListState();
 }
 
-class _HomeState extends State<Home> {
+class _OrderListState extends State<OrderList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: ListView(
         children: <Widget>[
           Container(
@@ -28,9 +27,9 @@ class _HomeState extends State<Home> {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
-                    children:<Widget>[
-                      component("H-Town Building"),
-                      component("Hilton"),
+                    children: <Widget>[
+                      component("#2172 - JN (Pvt) Ltd"),
+                      component("#2172 - JN (Pvt) Ltd"),
                     ],
                   ),
                 ),
@@ -42,8 +41,6 @@ class _HomeState extends State<Home> {
     );
   }
 }
-
-
 Widget component(String data) {
   return Container(
     margin: new EdgeInsets.only(top: 10.0),
@@ -52,30 +49,47 @@ Widget component(String data) {
       borderRadius: BorderRadius.circular(10),
       color: Color(0xFFfcc68f),
     ),
-
     child: Padding(
       padding: const EdgeInsets.all(15.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "$data",
-            style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
           SizedBox(
-            height: 8.0,
-          ),
-          Text("Kota Road, Colombo 12"),
-          SizedBox(
-            height: 8.0,
+            height: 13.0,
           ),
           Row(
-            mainAxisAlignment:MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text("Kota Road, Colombo 12",maxLines: 2,),
+              Text(
+                "Order Date - 2022.06.30",
+                maxLines: 2,
+              ),
             ],
           ),
-
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                width: 150.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.redAccent,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "Not Recevied",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     ),
