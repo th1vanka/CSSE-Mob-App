@@ -1,3 +1,8 @@
+import 'package:csse_mobile_app/genarate_credit.dart';
+import 'package:csse_mobile_app/invoice.dart';
+import 'package:csse_mobile_app/order_list.dart';
+import 'package:csse_mobile_app/place_order.dart';
+import 'package:csse_mobile_app/purchase_detail_page.dart';
 import '/notification.dart';
 import '/settingsPage.dart';
 import '/category.dart';
@@ -14,12 +19,18 @@ class OrderDetails extends StatefulWidget {
 class _OrderDetailsState extends State<OrderDetails> {
   int _page = 0;
 
-  final screens=[
+  final screens = [
     Home(),
-    CategoryPage(),
-    NotificationPage(),
-    NotificationPage(),
-    SettingsPage(),
+    // CategoryPage(),
+    // Invoice(),
+    GenarateCredit(),
+    PurchaseDetail(),
+    // NotificationPage(),
+    // Invoice(),
+    // CategoryPage(),
+    // SettingsPage(),
+    PlaceOrder(),
+    OrderList(),
   ];
 
   @override
@@ -51,9 +62,8 @@ class _OrderDetailsState extends State<OrderDetails> {
         ),
       ),
       body: screens[_page],
-
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         color: Color(0xFFffb566),
         height: 60.0,
         animationDuration: Duration(
