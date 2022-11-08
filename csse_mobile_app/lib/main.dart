@@ -1,8 +1,5 @@
-import 'package:csse_mobile_app/proceed.dart';
-
-import '/nav_bar.dart';
+import 'package:csse_mobile_app/login.dart';
 import 'package:flutter/material.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -11,9 +8,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "CSSE",
-      home: Proceed(),
+      home: SignIn(),
     );
   }
 }
