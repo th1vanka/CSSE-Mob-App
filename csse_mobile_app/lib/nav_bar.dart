@@ -1,3 +1,4 @@
+import 'package:csse_mobile_app/insert.dart';
 import 'package:csse_mobile_app/order_details.dart';
 
 import '/notification.dart';
@@ -21,7 +22,8 @@ class _OrderDetailsState extends State<OrderDetails> {
     CategoryPage(),
     OrderDetailsPage(),
     NotificationPage(),
-    SettingsPage()
+    SettingsPage(),
+    MongoDBInsert()
   ];
 
   @override
