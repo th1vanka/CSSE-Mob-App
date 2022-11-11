@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget purchaseDetail() {
+Widget purchaseDetail(String Comname, String iname, String qty, String price) {
   Color getColor(Set<MaterialState> states) {
     const Set<MaterialState> interactiveStates = <MaterialState>{
       MaterialState.pressed,
@@ -28,12 +28,16 @@ Widget purchaseDetail() {
         Padding(
           padding: const EdgeInsets.only(top: 15.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "JN (PVT) Ltd",
+                "$Comname",
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
               ),
+              Icon(
+                Icons.delete,
+                color: Colors.red,
+              )
             ],
           ),
         ),
@@ -46,7 +50,9 @@ Widget purchaseDetail() {
         Padding(
           padding: EdgeInsets.only(left: 15.0, right: 15.0, top: 5.0),
           child: Column(
-            children: [rowData(), rowData(), rowData()],
+            children: [
+              rowData(iname, qty, price),
+            ],
           ),
         )
       ],
@@ -54,7 +60,9 @@ Widget purchaseDetail() {
   );
 }
 
-Widget rowData() {
+Widget rowData(String iname, String qty, String price) {
+  int total = int.parse(price) * int.parse(qty);
+
   return Center(
       child: Padding(
     padding: const EdgeInsets.only(top: 5.0, bottom: 15.0),
@@ -62,46 +70,54 @@ Widget rowData() {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("H-beam(44mm)",
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400)),
-            Text("Amount: 56,000.00")
+            Text("$iname",
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
+            Text("Qty: $qty",
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400))
           ],
         ),
-        Row(
+        Column(
           children: [
-            SizedBox(
-              width: 50.0,
-              height: 25.0,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)))),
-                onPressed: () {},
-                child: Icon(Icons.remove, color: Colors.black87),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Text("10"),
-            ),
-            SizedBox(
-              width: 50.0,
-              height: 25.0,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)))),
-                onPressed: () {},
-                child: Icon(Icons.add, color: Colors.black87),
-              ),
-            ),
+            Text("Rs $total.00",
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600)),
           ],
-        )
+        ),
+        // Row(
+        //   children: [
+        //     SizedBox(
+        //       width: 50.0,
+        //       height: 25.0,
+        //       child: ElevatedButton(
+        //         style: ButtonStyle(
+        //             backgroundColor: MaterialStateProperty.all(Colors.white),
+        //             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        //                 RoundedRectangleBorder(
+        //                     borderRadius: BorderRadius.circular(10.0)))),
+        //         onPressed: () {},
+        //         child: Icon(Icons.remove, color: Colors.black87),
+        //       ),
+        //     ),
+        //     Padding(
+        //       padding: const EdgeInsets.all(5.0),
+        //       child: Text("10"),
+        //     ),
+        //     SizedBox(
+        //       width: 50.0,
+        //       height: 25.0,
+        //       child: ElevatedButton(
+        //         style: ButtonStyle(
+        //             backgroundColor: MaterialStateProperty.all(Colors.white),
+        //             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        //                 RoundedRectangleBorder(
+        //                     borderRadius: BorderRadius.circular(10.0)))),
+        //         onPressed: () {},
+        //         child: Icon(Icons.add, color: Colors.black87),
+        //       ),
+        //     ),
+        //   ],
+        // )
       ],
     ),
   ));
