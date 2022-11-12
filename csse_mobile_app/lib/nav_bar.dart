@@ -1,4 +1,6 @@
 import 'package:csse_mobile_app/genarate_credit.dart';
+import 'package:csse_mobile_app/inquiry.dart';
+import 'package:csse_mobile_app/inquiry_submit.dart';
 import 'package:csse_mobile_app/invoice.dart';
 import 'package:csse_mobile_app/order_list.dart';
 import 'package:csse_mobile_app/place_order.dart';
@@ -30,7 +32,8 @@ class _OrderDetailsState extends State<OrderDetails> {
     // CategoryPage(),
     // SettingsPage(),
     PlaceOrder(),
-    OrderList(),
+    //Inquiry(),
+    InquirySubmit(),
   ];
 
   @override

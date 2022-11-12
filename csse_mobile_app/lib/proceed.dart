@@ -37,40 +37,7 @@ class _ProceedState extends State<Proceed> {
           ),
         ),
       ),
-      body: ListView(             // body container
-        children: <Widget>[
-          Container(
-            color: Colors.orange,
-            child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40.0),
-                  topRight: Radius.circular(40.0),
-                ),
-                color: Colors.white,
-              ),
 
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const <Widget>[
-
-                    Padding(
-                      padding: EdgeInsets.all(20),
-                      child: Text("H-Town Buildings",style: TextStyle(fontSize: 18.0 ,),
-                      ),
-
-                    ),
-
-                  ],
-
-                ),
-
-
-            ),
-          ),
-
-        ],
-      ),
 
 
     )

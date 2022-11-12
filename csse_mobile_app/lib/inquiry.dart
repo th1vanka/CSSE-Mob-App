@@ -1,26 +1,34 @@
-import 'package:csse_mobile_app/nav_bar.dart';
-import 'package:flutter/material.dart';
+/*
 
-class Registration extends StatefulWidget {
-  const Registration({Key? key}) : super(key: key);
+import 'package:csse_mobile_app/MongoDBModel1.dart';
+import 'package:csse_mobile_app/dbHelper/mongodb.dart';
+import 'package:csse_mobile_app/home.dart';
+import 'package:flutter/material.dart';
+import 'package:csse_mobile_app/nav_bar.dart';
+import 'package:mongo_dart/mongo_dart.dart' as M;
+
+//done
+class Inquiry extends StatefulWidget {
+  const Inquiry({Key? key}) : super(key: key);
 
   @override
-  State<Registration> createState() => _RegistrationState();
+  State<Inquiry> createState() => _InquiryState();
 }
 
-class _RegistrationState extends State<Registration> {
+class _InquiryState extends State<Inquiry> {
   @override
   Widget build(BuildContext context) {
+
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       body:  Container(
-        color: Colors.orange,
+        color: Colors.white,
         width: double.infinity,
         height: double.infinity,
         alignment: Alignment.bottomCenter,
         child: Padding(
-          padding: EdgeInsets.only(top: 50.0),
+          padding: EdgeInsets.only(top: 5.0),
           child: Column(
             children: [
               SizedBox(
@@ -30,28 +38,34 @@ class _RegistrationState extends State<Registration> {
                 text: const TextSpan(
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'Skyline',
+                        text: '',
                         style: TextStyle(
                             fontSize: 40.0,
                             fontWeight: FontWeight.bold,
                             color: Colors.black87)),
                     TextSpan(
-                        text: ' Constructions',
+                        text: 'Order Inquiry',
+
                         style: TextStyle(
-                            fontSize: 25.0, fontWeight: FontWeight.bold)),
+                            fontSize: 30.0,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
               SizedBox(
-                height:size.width/7,
+                height:size.width/10,
               ),
               Padding(
                 padding:EdgeInsets.only(left: 20.0, right: 20.0),
                 child: Column(
                   children:[
+
+                    // 1 label
                     const TextField(
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.supervised_user_circle_outlined,color: Colors.orange,),
+
+
                           filled: true, //<-- SEE HERE
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
@@ -59,16 +73,23 @@ class _RegistrationState extends State<Registration> {
                           hintStyle: TextStyle(
                             color: Colors.orange,
                             fontSize: 16.0,
+
                           ),
-                          hintText: 'Enter Your Full Name...'),
+                          hintText: 'Order ID'),
                     ),
                     SizedBox(
                       height:size.width/20,
                     ),
+
+
+
+                    // 2 label
+
                     const TextField(
+
                       decoration: InputDecoration(
 
-                          prefixIcon: Icon(Icons.perm_identity,color: Colors.orange,),
+
                           filled: true, //<-- SEE HERE
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
@@ -77,78 +98,52 @@ class _RegistrationState extends State<Registration> {
                             color: Colors.orange,
                             fontSize: 16.0,
                           ),
-                          hintText: 'Enter Your NIC...'),
+                          hintText: 'Contact Number'),
                     ),
                     SizedBox(
                       height:size.width/20,
                     ),
+
+                    // 3 label
                     const TextField(
+
                       decoration: InputDecoration(
 
-                          prefixIcon: Icon(Icons.phone,color: Colors.orange,),
+
                           filled: true, //<-- SEE HERE
                           fillColor: Colors.white70,
                           border: OutlineInputBorder(
+
                               borderRadius: BorderRadius.all(Radius.circular(30))),
                           hintStyle: TextStyle(
                             color: Colors.orange,
                             fontSize: 16.0,
                           ),
-                          hintText: 'Enter Your Contact No...'),
+                          hintText: 'Inquiry'),
                     ),
                     SizedBox(
-                      height:size.width/20,
-                    ),
-                    const TextField(
-                      decoration: InputDecoration(
+                      height:size.width/10,
 
-                          prefixIcon: Icon(Icons.email_outlined,color: Colors.orange,),
-                          filled: true, //<-- SEE HERE
-                          fillColor: Colors.white70,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30))),
-                          hintStyle: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 16.0,
-                          ),
-                          hintText: 'Enter Your Email...'),
-                    ),
-                    SizedBox(
-                      height:size.width/20,
-                    ),
-                    const TextField(
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.password,color: Colors.orange,),
-                          filled: true, //<-- SEE HERE
-                          fillColor: Colors.white70,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(30))),
-                          hintStyle: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 16.0,
-                          ),
-                          hintText: 'Enter Your Password...'),
-                    ),
-                    SizedBox(
-                      height:size.width/7,
                     ),
 
+
                     SizedBox(
-                      width: size.width,
-                      height: size.width/8,
+                      width: size.width/1,
+                      height: size.width/7,
                       child: ElevatedButton(
+                        // error
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                            return OrderDetails();
-                          }));
+                          var fnameController,lnameController,addressController;
+
+                          _insertData(fnameController.text, lnameController.text, addressController.text);
                         },
 
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(32.0)),
-                          primary: Colors.black87, // Background color
+                          primary: Colors.orange, // Background color
                         ),
-                        child: const Text('Sign Up',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),),
+                        child: const Text('Submit',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),),
                       ),
                     ),
                     SizedBox(
@@ -164,4 +159,23 @@ class _RegistrationState extends State<Registration> {
       ),
     );
   }
+
+  Future<void> _insertData(String fName, String lName, String address)
+  async{
+   var _id=M.ObjectId();
+   final data= MongoDbModel1(id: _id, firstName: fName, lastName: lName, address: address);
+   var result = await MongoDatabase.insert(data);
+   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("insert ID"+ _id.$oid)));
+  }
+
+  void _clearAll(){
+    var fnameController;
+    var lnameController;
+    var addressController;
+    fnameController.text= "";
+    lnameController.text= "";
+    addressController.text= "";
+  }
+
 }
+*/
