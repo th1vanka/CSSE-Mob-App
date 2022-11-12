@@ -16,6 +16,7 @@ class _MongoDBInsertState extends State<MongoDBInsert>{
   var fqtyController = new TextEditingController();
   var frqtyController = new TextEditingController();
   var fdateController = new TextEditingController();
+  var freasonController = new TextEditingController();
 
   @override
   Widget build(BuildContext context){
@@ -48,11 +49,16 @@ class _MongoDBInsertState extends State<MongoDBInsert>{
                 controller: fdateController,
                 decoration: InputDecoration(labelText: "Due date"),
               ),
+              SizedBox(height: 20),
+              TextField(
+                controller: freasonController,
+                decoration: InputDecoration(labelText: "Reject Reason"),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton(onPressed: (){}, child: Text("Generate data")),
-                  ElevatedButton(onPressed: (){_insertData(fnameController.text, fqtyController.text, frqtyController.text, fdateController.text);}, child: Text("Insert data"))
+                  ElevatedButton(onPressed: (){_insertData(fnameController.text, fqtyController.text, frqtyController.text, fdateController.text, freasonController.text);}, child: Text("Insert data"))
                 ],
               ),
             ],
@@ -61,9 +67,9 @@ class _MongoDBInsertState extends State<MongoDBInsert>{
       ),
     );
   }
-  Future<void> _insertData(String orderName, orderQuantity, receivedQuantity, dueDate) async{
+  Future<void> _insertData(String orderName, orderQuantity, receivedQuantity, dueDate, rejectReason) async{
     var _id = M.ObjectId();
-    final data = MongoDbModel(itemName: orderName, orderQty: orderQuantity, receivedQty: receivedQuantity, dueDate: dueDate);
+    final data = MongoDbModel(itemName: orderName, orderQty: orderQuantity, receivedQty: receivedQuantity, dueDate: dueDate, rejectReason: rejectReason);
     var result = await MongoDatabase.insert(data);
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Inserted ID " + _id.$oid)));
     _clearAll();

@@ -14,18 +14,21 @@ class MongoDbModel {
     required this.orderQty,
     required this.receivedQty,
     required this.dueDate,
+    required this.rejectReason,
   });
 
   String itemName;
   String orderQty;
   String receivedQty;
   String dueDate;
+  String rejectReason;
 
   factory MongoDbModel.fromJson(Map<String, dynamic> json) => MongoDbModel(
     itemName: json["itemName"],
     orderQty: json["orderQty"],
     receivedQty: json["receivedQty"],
     dueDate: json["dueDate"],
+    rejectReason: json["rejectReason"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -33,5 +36,6 @@ class MongoDbModel {
     "orderQty": orderQty,
     "receivedQty": receivedQty,
     "dueDate": dueDate,
+    "rejectReason": rejectReason,
   };
 }
